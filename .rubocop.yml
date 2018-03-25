@@ -1,0 +1,29 @@
+AllCops:
+  Exclude:
+    - 'tmp/**/*'
+    - 'bin/**/*'
+
+Style/FrozenStringLiteralComment:
+  Enabled: false
+
+Metrics/LineLength:
+  Max: 100
+  Exclude:
+    - 'spec/**/*.rb'
+    - 'config/**/*.rb'
+
+Metrics/MethodLength:
+  Max: 15
+  Enabled: false
+  Exclude:
+    - 'spec/**/*.rb'
+
+Metrics/BlockLength:
+  Exclude:
+    - 'spec/**/*.rb'
+
+Style/VariableName:
+  Enabled: false
+
+Style/Documentation:
+  Enabled: false

@@ -17,6 +17,7 @@ module BcpInternetAcquiring
     end
 
     def status_order(id)
+      BCP.current_bcp = self
       Order.new(auth_data).status(id)
     end
 

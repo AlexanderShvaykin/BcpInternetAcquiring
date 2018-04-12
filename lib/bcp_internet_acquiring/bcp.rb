@@ -21,6 +21,11 @@ module BcpInternetAcquiring
       Order.new(auth_data).status(id)
     end
 
+    def status_extended_order(id)
+      BCP.current_bcp = self
+      Order.new(auth_data).status_extended(id)
+    end
+
     private
 
     # you need add config:

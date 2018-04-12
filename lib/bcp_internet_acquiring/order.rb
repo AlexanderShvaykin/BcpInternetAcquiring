@@ -2,6 +2,7 @@ module BcpInternetAcquiring
   class Order < BaseAPI
     attr_accessor :order_number, :days, :sum, :return_url, :expiration_days, :order_id, :form_url,
                   :status_code
+    attr_reader :status_extended
 
     def self.build(auth_data:, order_number:, days:, sum:, return_url:, validator: OrderValidator.new)
       order = new(auth_data)
@@ -26,9 +27,13 @@ module BcpInternetAcquiring
       self
     end
 
-    def status(id = order_id)
+    def status_extended(id = order_id, path: GET_ORDER_EXTENDED_STATUS_PATH)
+      @status_extended = http_client.get(path: query_string(path, orderId: id))
+    end
+
+    def status(id = order_id, path: GET_ORDER_STATUS_PATH)
       return unless id
-      response = http_client.get(path: query_string(GET_ORDER_STATUS_PATH, orderId: id))
+      response = http_client.get(path: query_string(path, orderId: id))
       unless response['ErrorCode'].to_i.zero?
         raise StatusOrderError.new(response['ErrorMessage'], code: response['ErrorCode'],
                                    status: response['OrderStatus'])

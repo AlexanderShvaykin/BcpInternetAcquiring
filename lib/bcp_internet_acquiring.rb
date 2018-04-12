@@ -14,5 +14,6 @@ require 'bcp_internet_acquiring/bcp'
 module BcpInternetAcquiring
   CREATE_ORDER_PATH     = '/register.do'.freeze
   GET_ORDER_STATUS_PATH = '/getOrderStatus.do'.freeze
+  GET_ORDER_EXTENDED_STATUS_PATH = '/getOrderStatusExtended.do'.freeze
   DATE_FORMAT = '%Y-%m-%dT%H:%M:%S'.freeze
 end
